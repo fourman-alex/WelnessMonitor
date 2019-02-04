@@ -21,6 +21,7 @@ import org.alexfourman.welnessmonitor.R
 import org.alexfourman.welnessmonitor.data.SickDate
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
+import org.threeten.bp.LocalDate
 
 class MainFragment : Fragment() {
     private val log = AnkoLogger(this.javaClass)
@@ -62,6 +63,7 @@ class MainFragment : Fragment() {
                 }
             }
         calendarView.setOnDateChangedListener(onSelectedDateChanged)
+        calendarView.state().edit().setMaximumDate(LocalDate.now()).commit()
 
         viewModel.sickDatesLiveData.observe(this, Observer { sickDateList ->
             calendarView.removeDecorators()
