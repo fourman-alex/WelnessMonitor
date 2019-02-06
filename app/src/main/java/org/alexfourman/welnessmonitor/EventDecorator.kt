@@ -5,12 +5,15 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.spans.DotSpan
+import org.alexfourman.welnessmonitor.data.SickDate
 
 
-class EventDecorator(private val sickDates: List<CalendarDay>) : DayViewDecorator {
+class EventDecorator(private val sickDates: List<SickDate>) : DayViewDecorator {
 
     override fun shouldDecorate(day: CalendarDay): Boolean {
-        return sickDates.contains(day)
+        return (sickDates.find { it.calendarDay == day } != null) || (sickDates.isNotEmpty() && sickDates.last().statusOpen && day.isAfter(
+            sickDates.last().calendarDay
+        ))
     }
 
     override fun decorate(view: DayViewFacade) {

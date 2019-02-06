@@ -1,5 +1,6 @@
 package org.alexfourman.welnessmonitor.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.alexfourman.welnessmonitor.EventDecorator
 import org.alexfourman.welnessmonitor.R
-import org.alexfourman.welnessmonitor.data.SickDate
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
 import org.threeten.bp.LocalDate
@@ -48,6 +48,7 @@ class MainFragment : Fragment() {
             { _, calendarDay, isNowSelected ->
                 uiScope.launch {
                     if (isNowSelected) {
+                        @SuppressLint("RestrictedApi")
                         if (fab.visibility != View.VISIBLE) {
                             fab.visibility = View.VISIBLE
                             fab.scaleX = 0f
@@ -67,14 +68,14 @@ class MainFragment : Fragment() {
 
         viewModel.sickDatesLiveData.observe(this, Observer { sickDateList ->
             calendarView.removeDecorators()
-            calendarView.addDecorator(EventDecorator(sickDateList.map { it.date }))
+            calendarView.addDecorator(EventDecorator(sickDateList))
         })
 
 
         fab.setOnClickListener fabListener@{
             //the next line just makes the listener not do anything in case calendarView.selectedDate is null
             val selectedDate = calendarView.selectedDate ?: run { return@fabListener }
-            //using the view model to call the correct listener based on if on the given date the fab should act as ADD or EDIT
+            //using the view model to call the correct listener based on if on the given calendarDay the fab should act as ADD or EDIT
             viewModel.onFabClicked(selectedDate,
                 onFabAdd = {
                     val builder = AlertDialog.Builder(this.requireContext())
@@ -82,10 +83,8 @@ class MainFragment : Fragment() {
                     builder.setView(editTextLayout)
                         .setPositiveButton("Add") { _, _ ->
                             viewModel.addSickDate(
-                                SickDate(
-                                    selectedDate,
-                                    editTextLayout.find<TextView>(R.id.notes_editText).text.toString()
-                                )
+                                selectedDate,
+                                editTextLayout.find<TextView>(R.id.notes_editText).text.toString()
                             )
                             onSelectedDateChanged(calendarView, selectedDate, true)
                         }

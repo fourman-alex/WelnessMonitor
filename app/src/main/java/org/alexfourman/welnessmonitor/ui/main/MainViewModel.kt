@@ -12,7 +12,11 @@ import org.alexfourman.welnessmonitor.data.WellnessRepository
 class MainViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main)
 
-    fun addSickDate(sickDate: SickDate) = WellnessRepository.insertSickDate(sickDate)
+    fun addSickDate(calendarDay: CalendarDay, notes: String) {
+        if (calendarDay == CalendarDay.today()) {
+            WellnessRepository.insertSickDate(SickDate(calendarDay, notes, true))
+        } else WellnessRepository.insertSickDate(SickDate(calendarDay, notes))
+    }
 
     suspend fun getByDate(calendarDay: CalendarDay) = WellnessRepository.getByDate(calendarDay)
     fun onFabClicked(
