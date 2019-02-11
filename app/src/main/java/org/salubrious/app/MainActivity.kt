@@ -1,8 +1,8 @@
-package org.alexfourman.welnessmonitor
+package org.salubrious.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import org.alexfourman.welnessmonitor.ui.main.MainFragment
+import org.salubrious.app.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

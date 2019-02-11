@@ -1,4 +1,4 @@
-package org.alexfourman.welnessmonitor
+package org.salubrious.app
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

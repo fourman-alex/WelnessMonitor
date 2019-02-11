@@ -1,8 +1,8 @@
-package org.alexfourman.welnessmonitor.data
+package org.salubrious.app.data
 
 import androidx.room.*
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import org.alexfourman.welnessmonitor.appContext
+import org.salubrious.app.appContext
 import org.threeten.bp.LocalDate
 
 @Database(entities = [SickDate::class], version = 1)

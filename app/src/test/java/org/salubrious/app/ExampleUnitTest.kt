@@ -1,4 +1,4 @@
-package org.alexfourman.welnessmonitor
+package org.salubrious.app
 
 import org.junit.Test
 

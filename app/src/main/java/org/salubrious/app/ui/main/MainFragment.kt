@@ -1,4 +1,4 @@
-package org.alexfourman.welnessmonitor.ui.main
+package org.salubrious.app.ui.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.alexfourman.welnessmonitor.EventDecorator
-import org.alexfourman.welnessmonitor.R
+import org.salubrious.app.EventDecorator
+import org.salubrious.app.R
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
 import org.threeten.bp.LocalDate

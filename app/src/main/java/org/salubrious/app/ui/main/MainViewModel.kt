@@ -1,13 +1,13 @@
-package org.alexfourman.welnessmonitor.ui.main
+package org.salubrious.app.ui.main
 
 import androidx.lifecycle.ViewModel
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.alexfourman.welnessmonitor.data.SickDate
-import org.alexfourman.welnessmonitor.data.WellnessDatabase
-import org.alexfourman.welnessmonitor.data.WellnessRepository
+import org.salubrious.app.data.SickDate
+import org.salubrious.app.data.WellnessDatabase
+import org.salubrious.app.data.WellnessRepository
 
 class MainViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main)

@@ -1,11 +1,11 @@
-package org.alexfourman.welnessmonitor
+package org.salubrious.app
 
 import android.graphics.Color
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.spans.DotSpan
-import org.alexfourman.welnessmonitor.data.SickDate
+import org.salubrious.app.data.SickDate
 
 
 class EventDecorator(private val sickDates: List<SickDate>) : DayViewDecorator {

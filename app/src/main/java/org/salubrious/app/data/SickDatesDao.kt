@@ -1,4 +1,4 @@
-package org.alexfourman.welnessmonitor.data
+package org.salubrious.app.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
