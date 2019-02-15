@@ -21,7 +21,6 @@ import org.salubrious.app.EventDecorator
 import org.salubrious.app.R
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
-import org.threeten.bp.LocalDate
 
 class MainFragment : Fragment() {
     private val log = AnkoLogger(this.javaClass)
@@ -56,7 +55,7 @@ class MainFragment : Fragment() {
                             fab.animate().scaleX(1f).scaleY(1f)
 
                         }
-                        if (viewModel.getByDate(calendarDay) != null)
+                        if (viewModel.isFabEditIcon(calendarDay.date))
                             (fab as FloatingActionButton).setImageResource(R.drawable.ic_baseline_edit_24px)
                         else
                             (fab as FloatingActionButton).setImageResource(R.drawable.ic_baseline_add_24px)
@@ -76,14 +75,14 @@ class MainFragment : Fragment() {
             //the next line just makes the listener not do anything in case calendarView.selectedDate is null
             val selectedDate = calendarView.selectedDate ?: run { return@fabListener }
             //using the view model to call the correct listener based on if on the given calendarDay the fab should act as ADD or EDIT
-            viewModel.onFabClicked(selectedDate,
+            viewModel.onFabClicked(selectedDate.date,
                 onFabAdd = {
                     val builder = AlertDialog.Builder(this.requireContext())
                     val editTextLayout = requireActivity().layoutInflater.inflate(R.layout.alert_input_edit_text, null)
                     builder.setView(editTextLayout)
                         .setPositiveButton("Add") { _, _ ->
                             viewModel.addSickDate(
-                                selectedDate,
+                                selectedDate.date,
                                 editTextLayout.find<TextView>(R.id.notes_editText).text.toString()
                             )
                             onSelectedDateChanged(calendarView, selectedDate, true)

@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+//causes a gradle warning -> "WARNING: API 'variant.getExternalNativeBuildTasks()' is obsolete and has been replaced with 'variant.getExternalNativeBuildProviders()'."
+//see issue https://issuetracker.google.com/issues/116408637
 apply plugin: 'io.fabric'
 
 apply plugin: 'kotlin-kapt'
@@ -64,6 +66,6 @@ dependencies {
 
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }

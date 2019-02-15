@@ -11,9 +11,7 @@ import org.salubrious.app.data.SickDate
 class EventDecorator(private val sickDates: List<SickDate>) : DayViewDecorator {
 
     override fun shouldDecorate(day: CalendarDay): Boolean {
-        return (sickDates.find { it.calendarDay == day } != null) || (sickDates.isNotEmpty() && sickDates.last().statusOpen && day.isAfter(
-            sickDates.last().calendarDay
-        ))
+        return sickDates.find { it.startDate <= day.date && (it.endDate == null || it.endDate >= day.date) } != null
     }
 
     override fun decorate(view: DayViewFacade) {

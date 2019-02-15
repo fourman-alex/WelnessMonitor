@@ -1,7 +1,6 @@
 package org.salubrious.app.data
 
 import androidx.room.*
-import com.prolificinteractive.materialcalendarview.CalendarDay
 import org.salubrious.app.appContext
 import org.threeten.bp.LocalDate
 
@@ -19,12 +18,12 @@ abstract class WellnessDatabase : RoomDatabase() {
 
 class Converters {
     @TypeConverter
-    fun fromTimestamp(value: Long?): CalendarDay? {
-        return value?.let { CalendarDay.from(LocalDate.ofEpochDay(it)) }
+    fun fromTimestamp(value: Long?): LocalDate? {
+        return value?.let { LocalDate.ofEpochDay(it) }
     }
 
     @TypeConverter
-    fun dateToTimestamp(calendarDay: CalendarDay?): Long? {
-        return calendarDay?.date?.toEpochDay()
+    fun dateToTimestamp(localDate: LocalDate?): Long? {
+        return localDate?.toEpochDay()
     }
 }
